@@ -2,11 +2,12 @@
 
 date=$( date )
 
-site_title='Hyperboria IRC Service'
-site_subtitle='Alpha preview'
+site_title='HypeIRC'
+site_subtitle="We don't ask colour, race or creed. Dedicated, free for all"
 
 index_page='about'
 
 nav_links=(
 	'team'
+	'rules'
 )
