@@ -1,0 +1,12 @@
+# vim: ft=zsh
+
+date=$( date )
+
+site_title='Hyperboria IRC Service'
+site_subtitle='Alpha preview'
+
+index_page='about'
+
+nav_links=(
+	'team'
+)

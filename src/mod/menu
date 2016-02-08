@@ -1,0 +1,27 @@
+# Test module
+# vim: ft=zsh
+
+function display_menu {
+	if (( cfg_automenu )); then
+		for i in $src_dir/pages/*; do
+			page_filename=${i##*/}
+			page_name=${page_filename%.*}
+
+			if ! [[ $nav_blacklist[$page_name] ]]; then
+				printf '<li><a href="/pages/%s.html">%s</a></li>\n' $page_name $page_name
+			fi
+		done
+	else
+		for i in $nav_links; do
+			read -r name url <<< $i
+
+			if ! [[ $url ]]; then
+				url=/pages/$name.html
+			fi
+
+			printf '<li><a href="%s">%s</a></li>\n' $url $name
+		done
+	fi
+}
+
+nav_menu=$( display_menu )

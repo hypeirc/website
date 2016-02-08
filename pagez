@@ -1,0 +1,100 @@
+#!/usr/bin/zsh
+
+function parse_template {
+	declare line c flag_variable line_out variable
+
+	while IFS= read -r line; do
+		while read -ku0 c; do
+			if (( flag_variable )); then
+				case $c in
+					'{') true;;
+					'}')
+						flag_variable=0
+						line_out+=${(P)variable}
+						unset variable
+					;;
+					*) variable+=$c
+				esac
+			else
+				if [[ $c == '%' ]]; then
+					flag_variable=1
+				else
+					line_out+=$c
+				fi
+			fi
+		done <<< $line
+
+		printf '%s' $line_out
+		unset line_out
+	done
+}
+
+function display_page {
+	declare page_name page_title
+
+	while (( $# )); do
+		case $1 in
+			(-n) page_name=$2; shift;;
+			(-t) page_title=$2; shift;;
+		esac
+		shift
+	done
+
+	if ! [[ $page_title ]]; then
+		page_title=$page_name
+	fi
+
+	parse_template < "$src_dir/html/header.html"
+	parse_template | $markdown_parser
+	parse_template < "$src_dir/html/footer.html"
+}
+
+function err {
+	printf '%s\n' "$*" >&2
+}
+
+function main {
+	markdown_parser='/usr/bin/cmark'
+
+	while (( $# )); do
+		case $1 in
+			(-s) src_dir=$2; shift;;
+			(-o) out_dir=$2; shift;;
+			(-m) markdown_parser=$2; shift;;
+		esac
+		shift
+	done
+
+	if ! [[ $src_dir =~ ^/ ]]; then
+		src_dir=$PWD/$src_dir
+	fi
+
+	# Source config
+	source $src_dir/config
+
+	# Custom code
+	for m in $src_dir/mod/*; do
+		if ! source $m; then
+			err "Could not load functions from $m"
+			return 1
+		fi
+	done
+
+	# Generate pages
+	for p in $src_dir/pages/*; do
+		page_filename=${p##*/}
+		page_name=${page_filename%.*}
+
+		printf 'Generating page from %s\n' $p
+		display_page -n $page_name -t $page_name < $p > "$out_dir/pages/$page_name.html"
+	done
+
+	# Add an index page
+	cd $out_dir
+	ln -fs pages/$index_page.html index.html
+
+	# Placeholder for now
+	cp -r $src_dir/static ./
+}
+
+main $@
