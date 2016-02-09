@@ -19,9 +19,15 @@ function display_menu {
 				url=/pages/$name.html
 			fi
 
-			printf '<li><a href="%s">%s</a></li>\n' $url $name
+			if [[ $page_name == $name ]]; then
+				printf '<li><span class="selected"><a href="%s">%s</a></span></li>\n' $url $name
+			else
+				printf '<li><a href="%s">%s</a></li>\n' $url $name
+			fi
 		done
 	fi
 }
 
-nav_menu=$( display_menu )
+function redraw_menu {
+	nav_menu=$( display_menu )
+}

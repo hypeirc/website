@@ -15,9 +15,21 @@ function parse_template {
 					;;
 					*) variable+=$c
 				esac
+			elif (( flag_exec )); then
+				case $c in
+					'{') true;;
+					'}')
+						flag_exec=0
+						${(s: :)inline_command}
+						unset inline_command
+					;;
+					*) inline_command+=$c;;
+				esac
 			else
 				if [[ $c == '%' ]]; then
 					flag_variable=1
+				elif [[ $c == '@' ]]; then
+					flag_exec=1
 				else
 					line_out+=$c
 				fi
