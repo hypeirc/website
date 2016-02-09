@@ -10,7 +10,8 @@ reside: EU, Canada and USA.
 Connect
 =======
 
-We have several RDNS domains, connect to any of them:
+All servers listen only inside the [hyperboria network](http://hyperboria.net).  
+We have several RDNS domains, connect to any of them via port 6667:
 
 * irc.hypeirc.net
 * irc.cjdns.ca

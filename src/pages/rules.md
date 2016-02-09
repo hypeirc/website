@@ -8,4 +8,8 @@ Things that are strictly prohibited are:
 
 Also try to not be a complete asshole. There are no rules against that, but that doesn't mean you have to be one.
 
-In addition, channels can have their own rules. Enforcing those is fully up to the ops of those channels.
+Channel rules
+=============
+
+There are no network-wide rules all channels and their participants have to follow beyond the ones above.
+Channel ops can additionally declare any other rules local to their channels and enforce them (or not) however they want.
