@@ -1,35 +1,49 @@
 #!/usr/bin/zsh
 
 function parse_template {
-	declare line c flag_variable line_out variable
+	declare line c flag_inline flag_variable flag_command line_out variable
 
 	while IFS= read -r line; do
-		while read -ku0 c; do
-			if (( flag_variable )); then
-				case $c in
-					'{') true;;
-					'}')
-						flag_variable=0
-						line_out+=${(P)variable}
-						unset variable
-					;;
-					*) variable+=$c
-				esac
-			elif (( flag_exec )); then
-				case $c in
-					'{') true;;
-					'}')
-						flag_exec=0
-						${(s: :)inline_command}
-						unset inline_command
-					;;
-					*) inline_command+=$c;;
-				esac
+		while read -r -ku0 c; do
+			if (( flag_inline )); then
+				if (( flag_variable )); then
+					case $c in
+						'}')
+							flag_variable=0
+							flag_inline=0
+
+							line_out+=${(P)variable}
+							unset variable
+						;;
+
+						*) variable+=$c;;
+					esac
+				elif (( flag_command )); then
+					case $c in
+						')')
+							flag_command=0
+							flag_inline=0
+
+							eval "$inline_command"
+							
+							unset inline_command
+						;;
+
+						*) inline_command+=$c;;
+					esac
+				else
+					if [[ $c == '{' ]]; then
+						flag_variable=1
+					elif [[ $c == '(' ]]; then
+						flag_command=1
+					else
+						flag_inline=0
+						line_out+="%$c"
+					fi
+				fi
 			else
 				if [[ $c == '%' ]]; then
-					flag_variable=1
-				elif [[ $c == '@' ]]; then
-					flag_exec=1
+					flag_inline=1
 				else
 					line_out+=$c
 				fi
