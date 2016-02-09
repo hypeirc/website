@@ -1,7 +1,7 @@
 #!/usr/bin/zsh
 
 function parse_template {
-	declare line c flag_variable variable
+	declare line c flag_variable variable inline_command
 
 		while IFS= read -r -ku0 c; do
 			if (( flag_inline )); then
