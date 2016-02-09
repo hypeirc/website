@@ -54,12 +54,16 @@ function err {
 }
 
 function main {
+	js_minify='/usr/bin/uglifyjs'
+	less_parser='/usr/bin/lessc'
 	markdown_parser='/usr/bin/cmark'
 
 	while (( $# )); do
 		case $1 in
 			(-s) src_dir=$2; shift;;
 			(-o) out_dir=$2; shift;;
+			(-j) js_minify=$2; shift;;
+			(-l) less_parser=$2; shift;;
 			(-m) markdown_parser=$2; shift;;
 		esac
 		shift
@@ -80,7 +84,21 @@ function main {
 		fi
 	done
 
+	# Minify JS into a single file
+	install -dm755 "$out_dir/js"
+	:> "$out_dir/site.js"
+	for j in ${js_files[@]}; do
+		printf 'Adding %s to site.js\n' $j
+		$js_minify "$src_dir/js/$j" >> "$out_dir/site.js"
+	done
+
+	# Generate CSS from site.less
+	install -dm755 "$out_dir/css"
+	printf 'Generating CSS from %s/less/site.less\n' "$src_dir"
+	$less_parser "$src_dir/less/site.less" > "$out_dir/site.css"
+
 	# Generate pages
+	install -dm755 "$out_dir/pages"
 	for p in $src_dir/pages/*; do
 		page_filename=${p##*/}
 		page_name=${page_filename%.*}
@@ -92,9 +110,6 @@ function main {
 	# Add an index page
 	cd $out_dir
 	ln -fs pages/$index_page.html index.html
-
-	# Placeholder for now
-	cp -r $src_dir/static ./
 }
 
 main $@

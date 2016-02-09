@@ -12,3 +12,9 @@ nav_links=(
 	'team'
 	'rules'
 )
+
+js_files=(
+	'jquery-2.2.0.js'
+	'jquery.stickyfooter.js'
+	'main.js'
+)
