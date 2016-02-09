@@ -24,7 +24,7 @@ function parse_template {
 							flag_command=0
 							flag_inline=0
 
-							eval "$inline_command"
+							line_out+=$( eval "$inline_command" )
 							
 							unset inline_command
 						;;
