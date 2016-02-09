@@ -5,7 +5,7 @@ HypeIRC is an IRC network aiming to be a free platform for both
 Hyperboria-related and any other discussion as long as you don't
 abuse the technical capabilities of the network or do something
 that is explicitly illegal in western countries, where our nodes
-reside: Canada, USA, Germany.
+reside: EU, Canada and USA.
 
 Connect
 =======
