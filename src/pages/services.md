@@ -17,17 +17,17 @@ Ones in [] are optional. Both should be typed in without the brackets.
 
 Nick registration:
 
-	msg nickserv register <password> [email]
+	/msg nickserv register <password> [email]
 
 Identification:
 
-	msg nickserv identify <password>
+	/msg nickserv identify <password>
 
 ### ChanServ
 
 Channel registration:
 
-	msg chanserv register <channel> [description]
+	/msg chanserv register <channel> [description]
 
 That will register the channel to your previously registered nick.
 You cannot register channels without being registered *and* identified
