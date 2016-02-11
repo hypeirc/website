@@ -12,6 +12,7 @@ nav_links=(
 	'team'
 	'rules'
 	'services'
+	'git https://github.com/hypeirc/website'
 )
 
 js_files=(
