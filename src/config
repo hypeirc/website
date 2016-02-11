@@ -1,6 +1,8 @@
 # vim: ft=zsh
 
-date=$( date )
+# Get the current date
+zmodload zsh/datetime
+TZ='Etc/UTC' strftime -s date '%Y.%m.%d %H:%M:%S' $EPOCHSECONDS
 
 site_title='HypeIRC'
 site_subtitle="We don't ask colour, race or creed. Dedicated, free for all"
