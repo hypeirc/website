@@ -8,7 +8,7 @@ reside: EU, Canada and USA.
 
 ## Connect
 
-All servers listen only inside the [hyperboria network](http://hyperboria.net).  
+All servers listen only inside the [hyperboria network](http://hyperboria.net).
 We have several RDNS domains, connect to any of them via port 6667:
 
 * irc.hypeirc.net
@@ -17,9 +17,18 @@ We have several RDNS domains, connect to any of them via port 6667:
 
 ## Channels
 
-Notable channels are:
+Notable channels include the following (submit a PR to add your channel)
 
-* **#general** and **#hypeirc** — general discussions (moderated)
-* **#obscure** — general discussions (unmoderated, anything goes)
-* **#webdev**
-* **#android**
+### General Discussion
+
+* **#general** and **#hypeirc** — moderated
+* **#hyperboria** — moderated for technical abuse
+* **#obscure** — unmoderated (anything goes)
+
+### On Topic
+
+* **#HIA** — hyperboria service discovery
+* **#android** — android phones and software
+* **#cjdns-dev** — cjdns development
+* **#radar** — a place for meshnet-related feed bots
+* **#webdev** — web development
