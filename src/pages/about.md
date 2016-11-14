@@ -21,9 +21,8 @@ Notable channels include the following (submit a PR to add your channel)
 
 ### General Discussion
 
-* **#general** and **#hypeirc** — moderated
 * **#hyperboria** — moderated for technical abuse
-* **#obscure** — unmoderated (anything goes)
+* **#hypeirc** — moderated
 
 ### On Topic
 
