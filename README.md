@@ -2,6 +2,7 @@
 
 The website is live on:
 
+* https://irc.dryware.org
 * http://irc.h.dryware.org
 
 ## Requirements
