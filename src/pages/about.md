@@ -8,8 +8,6 @@ reside: EU, Canada and USA.
 
 ## Connect
 
-All servers listen only inside the [hyperboria network](http://hyperboria.net).
-
 The servers are available with the use of [cjdns] or [yggdrasil].
 We have several RDNS domains within the cjdns network, connect to
 any of them via port 6667:
