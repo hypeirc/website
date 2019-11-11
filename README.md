@@ -2,8 +2,7 @@
 
 The website is live on:
 
-* http://hypeirc.net
-* https://www.hypeirc.net (public)
+* http://irc.h.dryware.org
 
 ## Requirements
 

@@ -11,7 +11,6 @@ reside: EU, Canada and USA.
 All servers listen only inside the [hyperboria network](http://hyperboria.net).
 We have several RDNS domains, connect to any of them via port 6667:
 
-* irc.hypeirc.net
 * hypeirc.dryware.org
 * hypeirc.cjdns.ca
 
